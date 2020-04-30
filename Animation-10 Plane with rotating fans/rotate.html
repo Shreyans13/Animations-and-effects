@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+.one{
+  
+  position: absolute;
+  display: block;
+  /*width: 50%;*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  /*height: 50%;*/
+  /*width: 50%;*/
+  /*-webkit-box-reflect: below;*/
+}
+.two{
+  transform:  rotate(0deg); 
+  top: 36%;
+  left: 44.8%;
+  /*transform: translate(-50%,-50%); */
+  position: absolute;
+  /*margin-left: 300px;*/
+  /*margin-top: 30px;*/
+}
+body {
+	background: black;
+	height: 200vh;
+}
+.refOne {
+	position: absolute;
+  display: block;
+  /*width: 50%;*/
+  top: 60%;
+  left: 32%;
+  /*transform: translate(-50%,-50%);*/
+  /*transform: translate(-50%,-50%);*/
+	/*transform: rotate(180deg);*/
+
+}
+.refTwo{
+  transform:  rotate(0deg); 
+opacity: 1;
+	position: absolute;
+  display: block;
+  /*width: 50%;*/
+  top: 65%;
+  left: 45%;
+}
+</style>
+</head>
+<body onmousemove="rotate()" onscroll="rotate()">
+
+
+<img class="one" src="http://www.oddbee.com/img/plane-mobile-retina.png" >
+<img class="refOne" src="http://www.oddbee.com/img/plane-reflection-mobile-retina.png" >
+
+
+<img class="two" id="rotate" src="http://www.oddbee.com/img/propeller-sharp-desktop.png">
+<img class="refTwo" id="rota" src="http://www.oddbee.com/img/propeller-sharp-reflection-desktop.png">
+
+<!-- http://www.oddbee.com/img/propeller-sharp-desktop.png -->
+
+<script>
+	function rotate(){
+		// document.getElementById('rotate').style.src = "http://www.oddbee.com/img/propeller-sharp-desktop.png"
+		// console.log("print")
+    	// console.log("its working")
+var values = getComputedStyle(document.querySelector('.two')).getPropertyValue("transform").split('(')[1].split(')')[0].split(',')
+
+		// console.log(values)
+		let angle = Math.round(Math.asin(values[1]) * (180/Math.PI));
+		angle = angle + 20;
+		// if (angle==100) {angle = 0}
+		angle = (angle == 100) ? 0: angle; 
+		// console.log(angle);
+    	document.getElementById('rotate').style.transform="rotate(" + angle + "deg" + ")";
+    	document.getElementById('rota').style.transform="rotate(" + angle + "deg" + ")";
+    }
+</script>
+</body>
+</html>
